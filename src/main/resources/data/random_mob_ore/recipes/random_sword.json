@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "A",
+    "A",
+    "B"
+  ],
+  "key": {
+    "A": { "item": "minecraft:iron_block" },
+    "B": { "item": "minecraft:iron_ingot" }
+  },
+  "result": {
+    "item": "random_mob_ore:random_sword",
+    "count": 1
+  }
+}
