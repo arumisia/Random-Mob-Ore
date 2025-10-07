@@ -1,5 +1,6 @@
 {
   "creativetabs.rmo_tab" : "Random Mob Ore",
   "item.random_mob_ore.random_sword" : "モブ石剣",
-  "enchantment.random_mob_ore.random_ore" : "ランダム鉱石"
+  "enchantment.random_mob_ore.random_ore" : "ランダム鉱石",
+  "enchantment.random_mob_ore.random_ore.desc" : "モブから鉱石が落ちるようになる。また、モブから落とす鉱石の数が増える。"
 }

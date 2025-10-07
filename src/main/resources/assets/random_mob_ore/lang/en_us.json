@@ -1,5 +1,6 @@
 {
   "creativetabs.rmo_tab" : "Random Mob Ore",
   "item.random_mob_ore.random_sword" : "random ore sword",
-  "enchantment.random_mob_ore.random_ore" : "Random ore"
+  "enchantment.random_mob_ore.random_ore" : "Random ore",
+  "enchantment.random_mob_ore.random_ore.desc" : "Mobs will now drop ore, and the amount of ore they drop will also increase."
 }
