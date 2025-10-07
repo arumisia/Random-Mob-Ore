@@ -1,7 +1,10 @@
 package github.arumisia.random_mob_ore;
 
 
+import github.arumisia.random_mob_ore.enchant.Random_Ore;
+import github.arumisia.random_mob_ore.enchant.Random_Ore_Enchantment;
 import github.arumisia.random_mob_ore.item.RMO_Item;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
@@ -10,6 +13,9 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -43,6 +49,9 @@ public class RMO_ServerEvent {
 
             if (entity instanceof Player) { return; }
 
+            ItemStack weapon = player.getMainHandItem();
+            int level = EnchantmentHelper.getItemEnchantmentLevel(Random_Ore_Enchantment.RANDOM_ORE.get(), weapon);
+
             if(heldItem.is(RMO_Item.RANDOM_SWORD.get())){
                 List<Item> oreItems = entity.level()
                         .registryAccess()
@@ -59,12 +68,49 @@ public class RMO_ServerEvent {
                     ItemStack stack = new ItemStack(oreItem, 1);
 
                     if (path.contains(DIAMOND_ORE_ID)) {
-                        if (RANDOM.nextFloat() >= 0.05F) {//5%
+                        if (RANDOM.nextFloat() >= 0.3F) {//5%
                             return;
                         }
                     }
                     if (path.contains(ANCIENT_DEBRIS_ID)) {
-                        if (RANDOM.nextFloat() >= 0.05F) {
+                        if (RANDOM.nextFloat() >= 0.3F) {
+                            return;
+                        }
+                    }
+
+                    ItemEntity drop = new ItemEntity(
+                            entity.level(),
+                            entity.getX(),
+                            entity.getY(),
+                            entity.getZ(),
+                            stack
+                    );
+                    event.getDrops().add(drop);
+                }
+            }
+            if (level > 0) {
+
+                List<Item> oreItems = entity.level()
+                        .registryAccess()
+                        .registryOrThrow(net.minecraft.core.registries.Registries.ITEM)
+                        .stream()
+                        .filter(item -> item.builtInRegistryHolder().is(ORES_TAG))
+                        .collect(Collectors.toList());
+
+                if (!oreItems.isEmpty()) {
+                    Item oreItem = oreItems.get(RANDOM.nextInt(oreItems.size()));
+
+                    String path = net.minecraft.core.registries.BuiltInRegistries.ITEM.getKey(oreItem).getPath();
+
+                    ItemStack stack = new ItemStack(oreItem, level);
+
+                    if (path.contains(DIAMOND_ORE_ID)) {
+                        if (RANDOM.nextFloat() >= 0.3F) {//5%
+                            return;
+                        }
+                    }
+                    if (path.contains(ANCIENT_DEBRIS_ID)) {
+                        if (RANDOM.nextFloat() >= 0.3F) {
                             return;
                         }
                     }

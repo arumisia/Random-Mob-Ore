@@ -1,5 +1,6 @@
 package github.arumisia.random_mob_ore;
 
+import github.arumisia.random_mob_ore.enchant.Random_Ore_Enchantment;
 import github.arumisia.random_mob_ore.item.RMO_Item;
 import github.arumisia.random_mob_ore.item.RMO_TAB;
 import net.minecraftforge.api.distmarker.Dist;
@@ -25,6 +26,7 @@ public class Random_Mob_Ore {
 
         RMO_TAB.register(modEventBus);
         RMO_Item.register(modEventBus);
+        Random_Ore_Enchantment.register(modEventBus);
 
         MinecraftForge.EVENT_BUS.register(this);
 

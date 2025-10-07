@@ -1,4 +1,5 @@
 {
   "creativetabs.rmo_tab" : "Random Mob Ore",
-  "item.random_mob_ore.random_sword" : "random ore sword"
+  "item.random_mob_ore.random_sword" : "random ore sword",
+  "enchantment.random_mob_ore.random_ore" : "Random ore"
 }
